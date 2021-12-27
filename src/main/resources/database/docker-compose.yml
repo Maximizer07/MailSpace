@@ -1,0 +1,31 @@
+version: '3'
+services:
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: admin
+    ports:
+    - "1337:80"
+    restart: always
+    depends_on:
+      - app_db
+    environment:
+      PMA_HOST: app_db
+      MYSQL_ROOT_PASSWORD: r@@t
+  app_db:
+    container_name: mysql
+    hostname: mailapp_db
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_DATABASE: maildb
+      MYSQL_USER: user
+      MYSQL_PASSWORD: r@@t
+      MYSQL_ROOT_PASSWORD: mailsp@ce
+    ports:
+      - "3307:3306"
+    volumes:
+      - ./init:/docker-entrypoint-initdb.d
+      - sqlfiles:/var/lib/mysql
+      - ./my.cnf:/etc/mysql/my.cnf
+volumes:
+  sqlfiles:

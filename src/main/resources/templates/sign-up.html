@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Sign Up & Sign In form</title>
+</head>
+<body class="d-flex flex-column" >
+<div class="container-fluid justify-content-center" style="margin-top: 10px; margin-bottom: 10px">
+  <card class="card px-2" style="background-color: #fff1e1"  >
+    <div class="card-body" >
+      <div class="text-center">
+        <div th:if="${status} == 'noconfirm'">
+        <h3>Ваш аккаунт был успешно создан</h3>
+        <h4>Если вы указали почту для восстановления пароля, перейдите по ссылке, которую мы отправили вам на почту</h4>
+        </div>
+        <div th:if="${status} == 'confirm'">
+          <h3>Ваш аккаунт был успешно активирован</h3>
+        </div>
+        <a th:href="@{/auth}" class="btn btn-success btn-block">Войти в аккаунт</a>
+      </div>
+    </div>
+  </card>
+</div>
+</body>
+</html>
